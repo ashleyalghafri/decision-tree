@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Decision Tree</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        button {
+            margin: 5px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function showFirstTimeOptions() {
+            document.getElementById("result").innerHTML = 
+                "Do you need support? " +
+                "<button onclick='showSupport()'>Yes</button> " +
+                "<button onclick='proceedToUpload()'>No</button>";
+        }
+
+        function showSupport() {
+            document.getElementById("result").innerHTML = "Call XCB1 or Aisha XTG1 for help.";
+        }
+
+        function proceedToUpload() {
+            document.getElementById("result").innerHTML = 
+                "What would you like to upload (Step 1 or Steps 2-5)? " +
+                "<button onclick='step1()'>Step 1</button> " +
+                "<button onclick='steps2to5()'>Steps 2-5</button>";
+        }
+
+        function step1() {
+            document.getElementById("result").innerHTML = 
+                "Do you have more than 10 polygons? " +
+                "<button onclick='moreThan10()'>Yes</button> " +
+                "<button onclick='lessThan10()'>No</button>";
+        }
+
+        function moreThan10() {
+            document.getElementById("result").innerHTML = 
+                "Follow the Excel template for batch upload. " +
+                "Call XTG1 or XCB1 for support.";
+        }
+
+        function lessThan10() {
+            document.getElementById("result").innerHTML = 
+                "If you have less than 10 polygons, please follow the SOP.";
+        }
+
+        function steps2to5() {
+            document.getElementById("result").innerHTML = "Follow the SOP for Steps 2-5.";
+        }
+
+        function startDecisionTree(firstTimeUser) {
+            if (firstTimeUser) {
+                showFirstTimeOptions();
+            } else {
+                proceedToUpload();
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Are you a first-time user?</h1>
+    <button onclick="startDecisionTree(true)">Yes</button>
+    <button onclick="startDecisionTree(false)">No</button>
+    <div id="result"></div>
+</body>
+</html>
